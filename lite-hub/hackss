@@ -97,7 +97,15 @@ end
 end
 })
 AutoFunctions:AddButton({
-    Name = "Auto Sell",
+    Name = "Auto Sell [Every 20 minutes]",
+    Callback = function()
+              while wait(1200) do
+game:GetService("ReplicatedStorage").Remotes.Sell:FireServer("All", "", "")
+end
+      end    
+})
+AutoFunctions:AddButton({
+    Name = "Auto Sell [Instant]",
     Callback = function()
               while wait() do
 game:GetService("ReplicatedStorage").Remotes.Sell:FireServer("All", "", "")
@@ -106,7 +114,7 @@ end
 })
 
 AutoFunctions:AddToggle({
-    Name = "Auto Case Bux",
+    Name = "Auto Click [Case Bux]",
     Default = false,
     Callback = function(AutoClick)
             if AutoClick then
