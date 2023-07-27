@@ -4,7 +4,7 @@ local Window = OrionLib:MakeWindow({Name = "[💎] Lite Hub | Jackpote Lite", Hi
 
 
 --Values
-while _G.autoSell = true
+_G.autoSell = true
 
 --Functions
 
@@ -17,15 +17,15 @@ function autoSell()
 
 --Tabs
 local MainTab = Window:MakeTab({
-	Name = "Main",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
+    Name = "Main",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
 })
 
 local AutoFunctions = Window:MakeTab({
-	Name = "Autofarm",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
+    Name = "Autofarm",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
 })
 
 
@@ -33,34 +33,32 @@ local AutoFunctions = Window:MakeTab({
 AutoFunctions:AddButton({
     Name = "Auto Open [Dominus]",
     Callback = function()
-              local args = {
-    [1] = "Dominus"
-}
 getgenv().farmer = true;
 
 while wait() do
    if getgenv().farmer == true then 
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenCrate"):FireServer(unpack(args))
+game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenCrate"):FireServer("Dominus")
 
  end
 end
+end
+})
 
 AutoFunctions:AddButton({
     Name = "Auto Open [Fedora]",
     Callback = function()
-              local args = {
-    [1] = "Fedora"
-}
+
 getgenv().farmer = true;
 
 while wait() do
    if getgenv().farmer == true then 
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenCrate"):FireServer(unpack(args))
+game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenCrate"):FireServer("Fedora")
 
  end
 end
-
-Tab:AddButton({
+end
+})
+AutoFunctions:AddButton({
     Name = "Auto Sell",
     Callback = function()
               while wait() do
@@ -70,10 +68,27 @@ end
 })
 
 MainTab:AddButton({
-	Name = "Fly [E]",
-	Callback = function()
-      		loadstring(game:HttpGet("https://pastebin.com/raw/vhGSLy7Y", true))()
-  	end    
+    Name = "Fly [E]",
+    Callback = function()
+              loadstring(game:HttpGet("https://pastebin.com/raw/vhGSLy7Y", true))()
+      end    
+})
+AutoFunctions:AddToggle({
+    Name = "Auto Case Bux",
+    Default = false,
+    Callback = function(AutoClick)
+            if AutoClick then
+            _G.loop = true
+            while _G.loop == true do wait()
+                game:GetService("ReplicatedStorage").Remotes.Click:FireServer()
+            end 
+        else
+            _G.loop = false
+            while _G.loop == true do wait()
+                game:GetService("ReplicatedStorage").Remotes.Click:FireServer()
+        end
+      end
+    end    
 })
 
 end
