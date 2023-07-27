@@ -27,7 +27,16 @@ local AutoFunctions = Window:MakeTab({
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
-
+local DevItems = Window:MakeTab({
+    Name = "Developer Items",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+local CreditsTab = Window:MakeTab({
+    Name = "Credits",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
 
 --Buttons
 AutoFunctions:AddButton({
@@ -43,7 +52,36 @@ game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenC
 end
 end
 })
+AutoFunctions:AddButton({
+    Name = "Auto Open [Mythical]",
+    Callback = function()
+getgenv().farmer = true;
 
+while wait() do
+   if getgenv().farmer == true then 
+game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenCrate"):FireServer("Mythical")
+
+ end
+end
+end
+})
+MainTab:AddButton({
+	Name = "Infinite Jump",
+	Callback = function()
+      		local InfiniteJumpEnabled = true
+game:GetService("UserInputService").JumpRequest:connect(function()
+	if InfiniteJumpEnabled then
+		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+	end
+end)
+  	end    
+})
+MainTab:AddButton({
+	Name = "Fast Walkspeed",
+	Callback = function()
+      		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 100
+  	end    
+})
 AutoFunctions:AddButton({
     Name = "Auto Open [Fedora]",
     Callback = function()
@@ -67,12 +105,6 @@ end
       end    
 })
 
-MainTab:AddButton({
-    Name = "Fly [E]",
-    Callback = function()
-              loadstring(game:HttpGet("https://pastebin.com/raw/vhGSLy7Y", true))()
-      end    
-})
 AutoFunctions:AddToggle({
     Name = "Auto Case Bux",
     Default = false,
@@ -89,6 +121,37 @@ AutoFunctions:AddToggle({
         end
       end
     end    
+})
+
+--Labels
+local Section = CreditsTab:AddSection({
+	Name = "Scripter: drz#4270"
+})
+local Section = CreditsTab:AddSection({
+	Name = "Scripter: noobyethan"
+})
+local Section = CreditsTab:AddSection({
+	Name = "UI designer: Orion"
+})
+local Section = DevItems:AddSection({
+	Name = "#1 Festive Sword Valk"
+})
+local Section = DevItems:AddSection({
+	Name = "#2 Fiery Horns Of The Netherworld"
+})
+local Section = DevItems:AddSection({
+	Name = "#3 Frozen Horns of the Frigid Planes"
+})
+local Section = DevItems:AddSection({
+	Name = "#4 Bling $$ Necklace"
+})
+
+--Notifications
+OrionLib:MakeNotification({
+	Name = "Welcome to lite hub!",
+	Content = "Welcome and thank you for using lite hub.",
+	Image = "rbxassetid://4483345998",
+	Time = 5
 })
 
 end
