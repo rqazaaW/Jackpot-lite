@@ -16,11 +16,20 @@ function autoSell()
  end
 
 --Tabs
+local MainTab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
 local AutoFunctions = Window:MakeTab({
 	Name = "Autofarm",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
+
+
+--Buttons
 AutoFunctions:AddButton({
     Name = "Auto Open [Dominus]",
     Callback = function()
@@ -60,6 +69,12 @@ end
       end    
 })
 
+MainTab:AddButton({
+	Name = "Fly [E]",
+	Callback = function()
+      		loadstring(game:HttpGet("https://pastebin.com/raw/vhGSLy7Y", true))()
+  	end    
+})
 
 end
 OrionLib:Init()
