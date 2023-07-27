@@ -1,28 +1,45 @@
+if game.PlaceId == 14172236627 then
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "[💎] Lite Hub | Jackpote Lite", HidePremium = false, IntroText = "[💎] Lite Hub", SaveConfig = true, ConfigFolder = "Lite Hub Config"})
 
-OrionLib:MakeNotification({
-	Name = "Welcome to Lite Hub?",
-	Content = "Thank you for using lite hub.",
-	Image = "rbxassetid://4483345998",
-	Time = 5
-})
 
-local Window = OrionLib:MakeWindow({Name = "[💎] Lite Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+--Values
+while _G.autoSell = true
 
-local Tab = Window:MakeTab({
-	Name = "autofarm",
+--Functions
+
+function autoSell()
+  while wait() do
+      game:GetService("ReplicatedStorage").Remotes.Sell:FireServer(unpack(args))
+      wait(.0001)
+  end
+ end
+
+--Tabs
+local AutoFunctions = Window:MakeTab({
+	Name = "Autofarm",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
+Tab:AddButton({
+    Name = "Auto Open [Dominus]",
+    Callback = function()
+              local args = {
+    [1] = "Dominus"
+}
+getgenv().farmer = true;
 
-local Section = Tab:AddSection({
-	Name = "Auto Open Cases"
-})
+while wait() do
+   if getgenv().farmer == true then 
+game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenCrate"):FireServer(unpack(args))
+
+ end
+end
 
 Tab:AddButton({
-	Name = "Auto Open [Fedora]",
-	Callback = function()
-      		local args = {
+    Name = "Auto Open [Fedora]",
+    Callback = function()
+              local args = {
     [1] = "Fedora"
 }
 getgenv().farmer = true;
@@ -33,143 +50,16 @@ game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenC
 
  end
 end
-  	end    
-})
 
 Tab:AddButton({
-	Name = "Auto Open [Dominus]",
-	Callback = function()
-      		local args = {
-    [1] = "Fedora"
-}
-getgenv().farmer = true;
-
-while wait() do
-   if getgenv().farmer == true then 
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenCrate"):FireServer(unpack(args))
-
- end
+    Name = "Auto Sell",
+    Callback = function()
+              while wait() do
+game:GetService("ReplicatedStorage").Remotes.Sell:FireServer("All", "", "")
 end
-
-  	end    
+      end    
 })
 
-Tab:AddButton({
-	Name = "Auto Open [Mythical]",
-	Callback = function()
-      		local args = {
-    [1] = "Mythical"
-}
-getgenv().farmer = true;
 
-while wait() do
-   if getgenv().farmer == true then 
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenCrate"):FireServer(unpack(args))
-
- end
 end
-  	end    
-})
-
-Tab:AddButton({
-	Name = "Auto Open [Legendary]",
-	Callback = function()
-      		local args = {
-    [1] = "Legendary"
-}
-getgenv().farmer = true;
-
-while wait() do
-   if getgenv().farmer == true then 
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenCrate"):FireServer(unpack(args))
-
- end
-end
-  	end    
-})
-
-Tab:AddButton({
-	Name = "Auto Open [Hair]",
-	Callback = function()
-      		local args = {
-    [1] = "Hair"
-}
-getgenv().farmer = true;
-
-while wait() do
-   if getgenv().farmer == true then 
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenCrate"):FireServer(unpack(args))
-
- end
-end
-  	end    
-})
-
-Tab:AddButton({
-	Name = "Auto Open [Epic]",
-	Callback = function()
-      		local args = {
-    [1] = "Epic"
-}
-getgenv().farmer = true;
-
-while wait() do
-   if getgenv().farmer == true then 
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenCrate"):FireServer(unpack(args))
-
- end
-end
-  	end    
-})
-
-Tab:AddButton({
-	Name = "Auto Open [Rare]",
-	Callback = function()
-      		local args = {
-    [1] = "Rare"
-}
-getgenv().farmer = true;
-
-while wait() do
-   if getgenv().farmer == true then 
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenCrate"):FireServer(unpack(args))
-
- end
-end
-  	end    
-})
-
-Tab:AddButton({
-	Name = "Auto Open [Common]",
-	Callback = function()
-      		local args = {
-    [1] = "Common"
-}
-getgenv().farmer = true;
-
-while wait() do
-   if getgenv().farmer == true then 
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenCrate"):FireServer(unpack(args))
-
- end
-end
-  	end    
-})
-
-local Section = Tab:AddSection({
-	Name = "Other"
-})
-
-Tab:AddButton({
-	Name = "Auto Sell [all unlocked items]",
-	Callback = function()
-      		getgenv().farmer = true;
-
-while wait() do
-   if getgenv().farmer == true then 
-game:GetService("ReplicatedStorage").Remotes.Sell
-
- end
-end
-  	end    
-})
+OrionLib:Init()
