@@ -92,15 +92,20 @@ end
 end
 })
 AutoFunctions:AddButton({
-    Name = "Auto Sell [Every 20 minutes]",
+    Name = "Auto Open [Dominus]",
     Callback = function()
-              while wait(1200) do
-game:GetService("ReplicatedStorage").Remotes.Sell:FireServer("All", "", "")
+getgenv().farmer = true;
+
+while wait() do
+   if getgenv().farmer == true then 
+game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenCrate"):FireServer("Dominus")
+
+ end
 end
-      end    
+end
 })
 AutoFunctions:AddButton({
-    Name = "Auto Sell [Instant]",
+    Name = "Auto Sell",
     Callback = function()
               while wait() do
 game:GetService("ReplicatedStorage").Remotes.Sell:FireServer("All", "", "")
