@@ -192,19 +192,6 @@ end
 end
 })
 AutoFunctions:AddButton({
-    Name = "Auto Open [Dominus]",
-    Callback = function()
-getgenv().farmer = true;
-
-while wait() do
-   if getgenv().farmer == true then 
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("OpenCrate"):FireServer("Dominus")
-
- end
-end
-end
-})
-AutoFunctions:AddButton({
     Name = "Auto Sell",
     Callback = function()
               while wait() do
