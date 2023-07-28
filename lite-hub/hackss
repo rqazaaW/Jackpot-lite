@@ -2,6 +2,8 @@ if game.PlaceId == 14172236627 then
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "[💎] Lite Hub | Jackpote Lite", HidePremium = false, IntroText = "[💎] Lite Hub", SaveConfig = true, ConfigFolder = "Lite Hub Config"})
 loadstring(game:HttpGet("https://raw.githubusercontent.com/rqazaaW/swagpremiumsource/main/envii", true))()
+local itemname
+local itemamount
 
 
 --Values
@@ -25,6 +27,11 @@ local MainTab = Window:MakeTab({
 
 local AutoFunctions = Window:MakeTab({
     Name = "Autofarm",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+local JackpotTab = Window:MakeTab({
+    Name = "Jackpot",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
@@ -200,7 +207,39 @@ game:GetService("ReplicatedStorage").Remotes.Sell:FireServer("All", "", "")
 end
       end    
 })
-
+JackpotTab:AddTextbox({
+    Name = "Input Item Name",
+    Default = "",
+    TextDisappear = false,
+    Callback = function(ItemName)
+        itemname = ItemName
+    end
+})
+JackpotTab:AddTextbox({
+    Name = "Input Item Amount",
+    Default = "",
+    TextDisappear = false,
+    Callback = function(ItemAmount)
+        itemamount = ItemAmount
+    end
+})
+JackpotTab:AddToggle({
+    Name = "Auto Jackpot",
+    Default = false,
+    Callback = function(AutoJackpot)
+              if AutoJackpot then
+            _G.loop9 = true
+            while _G.loop9 == true do wait()
+                game:GetService("ReplicatedStorage").Remotes["Add To Jackpot"]:FireServer("Add", "Inf", itemname, itemamount)
+            end 
+        else
+            _G.loop9 = false
+            while _G.loop9 == true do wait()
+                game:GetService("ReplicatedStorage").Remotes["Add To Jackpot"]:FireServer("Add", "Inf", itemname, itemamount)
+        end
+       end
+    end
+})
 AutoFunctions:AddToggle({
     Name = "Auto Click [Case Bux]",
     Default = false,
